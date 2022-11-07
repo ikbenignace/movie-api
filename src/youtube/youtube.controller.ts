@@ -3,6 +3,7 @@ import { YoutubeService } from './youtube.service';
 import { ApiResponse, ApiTags } from '@nestjs/swagger';
 import { Youtube } from './entities/youtube.entity';
 import { VideoDetails } from './dto/interfaces'
+import { DownloadEntity } from './entities/download.entity';
 
 @ApiTags('youtube')
 @Controller('youtube')
@@ -18,6 +19,12 @@ export class YoutubeController {
   @Get('info')
   async info(@Query('url') url: string) {
     return await this.youtubeService.getInfo(url)
+  }
+
+  @ApiResponse({type: DownloadEntity})
+  @Get('stats')
+  async stats() {
+    return await this.youtubeService.getStats()
   }
 
 }

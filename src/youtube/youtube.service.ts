@@ -38,4 +38,8 @@ export class YoutubeService {
     }
     throw new HttpException("YouTube video not found", HttpStatus.NOT_FOUND)
   }
+
+  getStats() {
+    return this.prisma.download.findMany()
+  }
 }
